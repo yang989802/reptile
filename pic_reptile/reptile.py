@@ -1,21 +1,20 @@
-from urllib import request
-from bs4 import BeautifulSoup
-import lxml
-import urllib
-import time
-import os
-import struct
-
-BASE_PAGE_HEAD='https://bangumi.bilibili.com/anime/index#p='
-BASE_PAGE_TAIL='&v=0&area=&stat=0&y=0&q=0&tag=&t=1&sort=0'
-
+from multiprocessing import Pool
+import os,time,random
+# 子进程要执行的代码
+def run_proc(name):
+    print('Run child process %s (%s)...' % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random()*3)
+    end = time.time()
+    print('Task %s runs %0.2f seconds'%(name,(end-start)))
 
 
-
-
-url='https://bangumi.bilibili.com/web_api/season/index_global?page=1&page_size=20&version=0&is_finish=0&start_year=0&tag_id=&index_type=1&index_sort=0&quarter=0'
-req = urllib.request.Request(url=url)
-page = request.urlopen(req).read()
-
-
-print(page)
+if __name__=='__main__':
+    print('Parent %s'%(os.getpid()))
+    p = Pool(4)
+    for i in range(5):
+        p.apply_async(run_proc,args=(i,))
+    print('waiting for all subprocesses done')
+    p.close()
+    p.join()
+    print('All done')

@@ -29,7 +29,6 @@ def downloadPic(imgDiv,path):
            print('none')
         else:
             IMG_URL.append(img.img['src'])
-
     index = 1
     while len(IMG_URL) != 0:
         url = IMG_URL.pop()
@@ -42,8 +41,9 @@ def downloadPic(imgDiv,path):
             )
             index = index + 1
 
-        except:
+        except Exception as e:
             print('error-> ' + url + '\n' + 'filename:' + path)
+            print(e)
 def download(link):
     print('Run download task  (%s)...' % (os.getpid()))
     req = urllib.request.Request(url=link, headers=headers)
@@ -76,12 +76,13 @@ def copy_url(url,num):
 
 if __name__ == "__main__":
     start = time.time()
-    for index in range(1,50):
+    for index in range(1,2):
         url = PAGE_INDEX+str(index)
         p = Process(target=copy_url,args=(url,index,))
         p.start()
     print('123')
     p.join()
+    print('321')
     end = time.time()
     print('Task  runs %0.2f seconds.' % (end - start))
 
