@@ -30,6 +30,7 @@ DETAIL_IMG_URL=[] #表情包详情页
 BASE_PAGE_URL ='https://www.doutula.com/article/list/?page='#主页面获取详情页
 IMG_URL=[]#图片下载地址
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+start = time.time()
 for x in range(1, 2):
     url = BASE_PAGE_URL + str(x)
     PAGE_URL_LIST.append(url)
@@ -82,7 +83,9 @@ while len(DETAIL_IMG_URL)!=0:
             print('error-> '+url+'\n'+'filename:'+path)
 
 
+    end = time.time()
 
+    print('task runs %0.2f seconds.'%(end - start))
 
 
 
