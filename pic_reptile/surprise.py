@@ -1,6 +1,5 @@
 import time
 from urllib import request
-
 import os
 from bs4 import BeautifulSoup
 from db.MysqlDB import MysqlDB

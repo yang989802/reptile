@@ -2,7 +2,7 @@ import mysql.connector
 class MysqlDB(object):
     '连接数据库'
     def __init__(self):
-        self.connect = mysql.connector.connect(user='python',password='python',database='spider',host='39.108.63.54')
+        self.connect = mysql.connector.connect(user='root',password='root',database='spider',host='127.0.0.1')
         self.cursor = self.connect.cursor(dictionary=True)
 
     def getUrl(self):
