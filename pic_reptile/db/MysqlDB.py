@@ -44,5 +44,13 @@ class MysqlDB(object):
         self.cursor.execute(
             "INSERT INTO PIC_DOWNLOAD (DOWNLOAD_URL_ID,SRC,ON_ERROR_SRC,STATUE,PIC_NAME)VALUES(%d,'%s','%s',0,'%s')" % (url_id, src, onerror,pic_name))
         self.connect.commit()
+
+    def findPicByUrlId (self,urlId):
+        #通过download_url_id来查找返回的图片
+        self.cursor.execute('select pic_id,src,on_error_src,pic_name from pic_download where Download_url_id=%s'%urlId)
+        value = self.cursor.fetchall()
+
+        return value
+
     def __del__(self):
         self.connect.close()
