@@ -52,7 +52,7 @@ def start(path):
 
 if __name__ =='__main__':
     picPool=[]
-    path='D:/20180416195843.png'
+    path='D:/20180416195843.png'#此处填地址
     data = getPercent(path)
     m = MysqlDB()
     if not data:
